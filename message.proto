@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package CacheService;
+
+service CacheRequest {
+  rpc SendMessage (CacheMsgRequest) returns (CacheMsgReply) {}
+}
+
+message CacheMsgRequest {
+  string _id = 1;
+  string func = 2;
+  string key = 3;
+  string value = 4;
+  string config = 5;
+}
+
+message CacheMsgReply {
+  string _id = 1;
+  bool ok = 2;
+  string data = 3;
+}
