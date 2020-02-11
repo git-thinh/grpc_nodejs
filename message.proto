@@ -9,13 +9,16 @@ service CacheRequest {
 message CacheMsgRequest {
   string _id = 1;
   string func = 2;
-  string key = 3;
-  string value = 4;
-  string config = 5;
+  int32 scope = 3;
+  string key = 4;
+  string value = 5;
+  string config = 6;
 }
 
 message CacheMsgReply {
   string _id = 1;
   bool ok = 2;
-  string data = 3;
+  int32 scope = 3;
+  string key = 4;
+  string data = 5;
 }
