@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package MsgPackage;
+
+service MsgService {  
+  rpc Send (MsgBuffer) returns (MsgBuffer) {}
+  rpc ListAll (MsgBuffer) returns (MsgBuffer) {}
+  
+  // receiver: * = all, APP ???, APP CACHE ..., USER 123, GROUP 456 ...
+  rpc Notify (MsgBuffer) returns (Empty) {}
+
+  rpc ConnectWatcher (MsgBuffer) returns (MsgBuffer) {}
+  // add the watch method definition
+  rpc Watcher (Empty) returns (stream MsgBuffer) {}
+}
+
+message Empty {}
+
+message MsgBuffer {
+  bool ok = 1;
+  string type = 2;
+  string id = 3;
+  string sender = 4;
+  string receiver = 5;
+  bytes request = 6;
+  bytes response = 7;
+}

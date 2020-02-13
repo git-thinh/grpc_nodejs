@@ -1,0 +1,19 @@
+﻿syntax = "proto3"; 
+ 
+package CacheEngine;
+ 
+service Notify {
+    rpc join(stream Message) returns (stream Message){}
+    rpc send(Message) returns (Message){}
+}
+ 
+message Message {
+  bool ok = 1;
+  string type = 2;
+  string id = 3;
+  string sender = 4;
+  string receiver = 5;
+  string text = 6;
+  bytes request = 7;
+  bytes response = 8;
+}
