@@ -1,11 +1,22 @@
 ﻿syntax = "proto3"; 
  
-package CacheEngine;
+package MessageEngine;
  
-service Notify {
-    rpc join(stream Message) returns (stream Message){}
+service MessageBroker {
+    rpc start(stream Message) returns (stream Message){}
     rpc send(Message) returns (Message){}
+    rpc join(User) returns (User){}
     rpc getBuffer(MessageBuffer) returns (MessageBuffer){}
+    rpc sendBuffer(stream MessageBuffer) returns (MessageBuffer);
+}
+
+message Empty {}
+
+message User {
+  bool ok = 1;
+  string id = 2;
+  string name = 3;
+  string text = 4;
 }
 
 message MessageBuffer {

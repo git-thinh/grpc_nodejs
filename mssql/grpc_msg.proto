@@ -1,0 +1,42 @@
+﻿syntax = "proto3"; 
+ 
+package MessageEngine;
+ 
+service MessageBroker { 
+    rpc streamMessage(stream Message) returns (stream Message){}
+
+
+    rpc sendMessage(Message) returns (Message){}
+    rpc joinUser(User) returns (User){}
+    rpc removeUser(User) returns (User){}
+    rpc getBuffer(MessageBuffer) returns (MessageBuffer){}
+    rpc streamBuffer(stream MessageBuffer) returns (MessageBuffer);
+}
+
+message Empty {}
+
+message User {
+  bool ok = 1;
+  string id = 2;
+  string name = 3;
+  string text = 4;
+}
+
+message MessageBuffer {
+  bool ok = 1;
+  string type = 2;
+  string id = 3;
+  string name = 4;
+  bytes data = 5;
+}
+
+message Message {
+  bool ok = 1;
+  string type = 2;
+  string id = 3;
+  string sender = 4;
+  string receiver = 5;
+  string text = 6;
+  bytes request = 7;
+  bytes response = 8;
+}
