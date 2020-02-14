@@ -1,0 +1,21 @@
+﻿syntax = "proto3"; 
+ 
+package MessageEngine;
+ 
+service MessageBroker { 
+    rpc streamMessage(stream Message) returns (stream Message){}
+    rpc sendMessage(Message) returns (Message){}
+}
+
+message Message {
+  bool ok = 1;
+  string type = 2;
+  string id = 3;
+  string sender = 4;
+  string receiver = 5;
+  string text = 6;
+  bool notify = 7;
+  bool waiting = 8;
+  string request = 9;
+  string response = 10;
+}
